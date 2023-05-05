@@ -15,6 +15,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import SearchChampionContext from '@/store/context/searchChampionContext';
+import { useContext } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -78,6 +80,15 @@ function Navbar() {
 //   const handleCloseUserMenu = () => {
 //     setAnchorElUser(null);
 //   };
+
+const [state, dispatch] = useContext(SearchChampionContext);
+
+const handleSearchChampion = (ev) => {
+  dispatch({
+      type: 'search',
+      text: ev.target.value
+  })
+}
 
   return (
     <AppBar position="static">
@@ -149,6 +160,7 @@ function Navbar() {
                 <StyledInputBase
                 placeholder="Search Champion…"
                 inputProps={{ 'aria-label': 'search' }}
+                onChange={handleSearchChampion}
                 />
             </Search>
           </Box>

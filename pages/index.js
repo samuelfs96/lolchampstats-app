@@ -2,12 +2,16 @@ import ChampImage from '@/components/ChampImage';
 import FilterTabs from '@/components/FilterTabs'
 import Layout from '@/components/layout'
 import { Box, Container, Paper } from '@mui/material'
+import SearchChampionContext from '@/store/context/searchChampionContext';
+import { useContext } from 'react';
 
 export default function Home({data}) {
+  const [state] = useContext(SearchChampionContext);
   return (
     <>
       <Layout title="Lol Champion Stats">
         <Container sx={{marginTop: '2rem', marginBottom: '2rem'}}>
+          <h2>{state?.text}</h2>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <FilterTabs/>
           </Box>
