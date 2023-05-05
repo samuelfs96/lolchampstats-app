@@ -1,13 +1,15 @@
 import '@/styles/globals.css'
-import { blueGrey } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: blueGrey[500],
+      main: grey[900],
+      blue: '#3a437a',
+      pink: '#bb3162'
     },
-  },
+  }
 });
 
 export default function App({ Component, pageProps }) {
