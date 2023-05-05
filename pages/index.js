@@ -50,8 +50,9 @@ export default function Home({data}) {
 
 // This gets called on every request
 export async function getServerSideProps() {
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION
   // Fetch data from external API
-  const res = await fetch(`http://ddragon.leagueoflegends.com/cdn/13.9.1/data/en_US/champion.json`);
+  const res = await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`);
   const {data} = await res.json();
  
   // Pass data to the page via props
