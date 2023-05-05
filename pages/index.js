@@ -18,7 +18,6 @@ export default function Home({data}) {
     <>
       <Layout title="Lol Champion Stats">
         <Container sx={{marginTop: '2rem', marginBottom: '2rem', height: newData.length > 0 ? 'auto': '100vh'}}>
-          <h2>{state?.text}</h2>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <FilterTabs/>
           </Box>
@@ -33,7 +32,7 @@ export default function Home({data}) {
           >
             {
               newData.length > 0 ? (
-                newData.slice(0,12).map(([key, value], index) => (
+                newData.slice(0,16).map(([key, value], index) => (
                   <Paper key={key}
                     variant="outlined"
                     sx={{
@@ -44,6 +43,7 @@ export default function Home({data}) {
                       gap: '3px',
                       overflow: 'hidden',
                       width: '250px',
+                      alignItems: 'center'
                     }}
                   >
                     <h1 style={{textAlign: 'center', fontSize: '21px'}}>{value?.name}</h1>
