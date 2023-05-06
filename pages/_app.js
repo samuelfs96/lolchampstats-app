@@ -1,9 +1,10 @@
-import SearchChampionContext from '@/store/context/searchChampionContext';
+
 import '@/styles/globals.css'
 import { grey } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { InitialState, searchChampion } from '@/store/reducers/searchChampion';
 import { useReducer } from 'react';
+import SearchChampionContext from '@/store/context/SearchChampionContext';
 
 const theme = createTheme({
   palette: {

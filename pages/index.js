@@ -1,13 +1,25 @@
 import ChampImage from '@/components/ChampImage';
 import FilterTabs from '@/components/FilterTabs'
 import Layout from '@/components/layout'
-import { Box, Container, Paper } from '@mui/material'
-import SearchChampionContext from '@/store/context/searchChampionContext';
-import { useContext, useEffect, useState } from 'react';
+import SearchChampionContext from '@/store/context/SearchChampionContext';
+import { Box, Button, Container, Paper } from '@mui/material'
+import { useCallback, useContext, useEffect, useState } from 'react';
+import localFont from 'next/font/local';
+
+const myFont = localFont({ src: '../public/fonts/Azonix.otf' });
 
 export default function Home({data}) {
+  const [itemsCount, setItemsCount] = useState(16)
   const [state] = useContext(SearchChampionContext);
   const [newData, setNewData] = useState([]);
+
+  const handleShowMore = useCallback(() => {
+    setItemsCount(itemsCount => {
+      const totalCount = itemsCount + 16;
+      if(newData.length > totalCount) return totalCount;
+      else return newData.length;
+    });
+  }, [newData])
 
   useEffect(() => {
     const filterItems = Object.entries(data).filter(([key, value]) => value.name.toLowerCase().includes(state.text.toLowerCase()));
@@ -32,7 +44,7 @@ export default function Home({data}) {
           >
             {
               newData.length > 0 ? (
-                newData.slice(0,16).map(([key, value], index) => (
+                newData.slice(0,itemsCount).map(([key, value], index) => (
                   <Paper key={key}
                     variant="outlined"
                     sx={{
@@ -56,6 +68,20 @@ export default function Home({data}) {
                 </Box>
               )
             }
+          </Box>
+          <Box sx={{marginTop: '4rem', display:'flex', justifyContent: 'center'}}>
+            <Button 
+              variant="contained" 
+              className={myFont.className}
+              onClick={handleShowMore}
+              sx={{
+                backgroundColor: 'primary.pink',
+                '&:hover': {
+                  backgroundColor: 'primary.pink',
+                  opacity: '0.8',
+                  transition: '.3s all ease'
+                },
+              }}>Show More</Button>
           </Box>
         </Container>
       </Layout>

@@ -15,8 +15,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import SearchChampionContext from '@/store/context/searchChampionContext';
 import { useContext } from 'react';
+import SearchChampionContext from '@/store/context/SearchChampionContext';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
