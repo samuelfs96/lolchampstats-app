@@ -10,7 +10,7 @@ const myFont = localFont({ src: '../../public/fonts/Azonix.otf' });
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
 const HtmlTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
+    <Tooltip {...props} classes={{ popper: className }} enterTouchDelay={0} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: '#000',
