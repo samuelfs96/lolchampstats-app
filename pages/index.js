@@ -1,6 +1,6 @@
 import ChampImage from '@/components/ChampImage';
 import FilterTabs from '@/components/FilterTabs'
-import Layout from '@/components/layout'
+import Layout from '@/components/Layout'
 import SearchChampionContext from '@/store/context/SearchChampionContext';
 import { Box, Button, Container, Paper } from '@mui/material'
 import { useCallback, useContext, useEffect, useState } from 'react';
