@@ -5,17 +5,18 @@ import SearchChampionContext from '@/store/context/SearchChampionContext';
 import { Box, Button, Container, Paper } from '@mui/material'
 import { useCallback, useContext, useEffect, useState } from 'react';
 import localFont from 'next/font/local';
+import Link from 'next/link';
 
 const myFont = localFont({ src: '../public/fonts/Azonix.otf' });
 
 export default function Home({data}) {
-  const [itemsCount, setItemsCount] = useState(16)
+  const [itemsCount, setItemsCount] = useState(15)
   const [state] = useContext(SearchChampionContext);
   const [newData, setNewData] = useState([]);
 
   const handleShowMore = useCallback(() => {
     setItemsCount(itemsCount => {
-      const totalCount = itemsCount + 16;
+      const totalCount = itemsCount + 15;
       if(newData.length > totalCount) return totalCount;
       else return newData.length;
     });
@@ -38,29 +39,39 @@ export default function Home({data}) {
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center',
-              gap: '1rem',
+              gap: '.5rem',
               marginTop: '3rem'
             }}
           >
             {
               newData.length > 0 ? (
                 newData.slice(0,itemsCount).map(([key, value], index) => (
-                  <Paper key={key}
-                    variant="outlined"
-                    sx={{
-                      backgroundColor: `${index%2 === 0 ? 'primary.blue' : 'primary.pink'}`,
-                      color: 'white',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '3px',
-                      overflow: 'hidden',
-                      width: '250px',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <h1 style={{textAlign: 'center', fontSize: '21px'}}>{value?.name}</h1>
-                    <ChampImage champ={value?.id} type='loading'/>
-                  </Paper>
+                  <Link href={`/champion/${key}`} key={key} 
+                    style={{
+                      textDecoration: 'none', 
+                    }}>
+                    <Paper 
+                      variant="outlined"
+                      sx={{
+                        backgroundColor: `${index%2 === 0 ? 'primary.blue' : 'primary.pink'}`,
+                        color: 'white',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '3px',
+                        overflow: 'hidden',
+                        width: { xs: '300px', md: '200px' },
+                        alignItems: 'center',
+                        transition: '.3s all ease',
+                        '&:hover': {
+                          opacity: '0.8',
+                          transform: 'scale(1.05)'
+                        }
+                      }}
+                    >
+                      <h1 style={{textAlign: 'center', fontSize: '21px'}}>{value?.name}</h1>
+                      <ChampImage champ={value?.id} type='loading'/>
+                    </Paper>
+                  </Link>
                 ))
               ) : (
                 <Box sx={{marginTop: '4rem'}}>

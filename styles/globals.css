@@ -5,3 +5,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+p{
+  line-height : 1rem;
+}

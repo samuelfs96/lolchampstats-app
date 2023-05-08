@@ -17,6 +17,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { useContext } from 'react';
 import SearchChampionContext from '@/store/context/SearchChampionContext';
+import {useRouter} from 'next/router';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -90,6 +91,8 @@ const handleSearchChampion = (ev) => {
   })
 }
 
+const router = useRouter()
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -153,16 +156,17 @@ const handleSearchChampion = (ev) => {
             ))}
           </Box> */}
           <Box sx={{ flexGrow: 0, marginBottom: {xs: '1rem', md: '0'} }}>
-            <Search>
-                <SearchIconWrapper>
-                <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                placeholder="Search Champion…"
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={handleSearchChampion}
-                />
-            </Search>
+          {router.pathname === '/' && 
+            (<Search>
+              <SearchIconWrapper>
+              <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+              placeholder="Search Champion…"
+              inputProps={{ 'aria-label': 'search' }}
+              onChange={handleSearchChampion}
+              />
+            </Search>)}
           </Box>
         </Toolbar>
       </Container>
