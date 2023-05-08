@@ -5,6 +5,7 @@ import { Box, Chip, Container, Divider, Stack, Tooltip, tooltipClasses } from '@
 import { styled } from '@mui/material/styles';
 import React from 'react'
 import localFont from 'next/font/local';
+import Carousel from '@/components/Carousel';
 
 const myFont = localFont({ src: '../../public/fonts/Azonix.otf' });
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
@@ -19,17 +20,28 @@ const HtmlTooltip = styled(({ className, ...props }) => (
       fontSize: theme.typography.pxToRem(12),
       border: '1px solid #bb3162',
       borderRadius: '0px',
-      padding: '1.5rem'
+      padding: '1.25rem'
     },
 }));
 
 const ToltipInfo = ({name, description}) => {
     return (
         <>
-            <h2 style={{marginTop: '0'}}>{name}</h2>
-            <p style={{marginBottom: '0'}}>{description}</p>
-        </>
+        <div dangerouslySetInnerHTML={{__html: name}} style={{marginBottom: '.75rem', fontSize: '.8rem'}} className={myFont.className}></div>
+        <div dangerouslySetInnerHTML={{__html: description}} style={{marginBottom: '0', fontSize: '.5rem', lineHeight: '.75rem'}} className={myFont.className}></div>
+            {/* <h2 style={{marginTop: '0', fontSize: '.8rem'}} className={myFont.className}>{name}</h2>
+            <p style={{marginBottom: '0', fontSize: '.5rem', lineHeight: '.75rem'}} className={myFont.className}>{description}</p>
+         */}
+         </>
     )
+}
+
+const skins = (skins, champ) => {
+    return skins.map(({num, name}) => ({
+        label: name,
+        imgPath:
+          `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champ}_${num}.jpg`,
+    }));
 }
 
 export default function index({champion}) {
@@ -80,8 +92,8 @@ export default function index({champion}) {
                 flexDirection: 'column', 
                 border: '1px solid', 
                 padding: '1.75rem', 
-                marginTop: '2rem',
-                fontSize: '.8rem',
+                marginTop: '4rem',
+                fontSize: '1rem',
                 borderColor: 'primary.blue',
                 textAlign: 'center'
             }}>
@@ -114,6 +126,17 @@ export default function index({champion}) {
                         )
                     }
                 </Box>
+            </Box>
+            <Box sx={{
+                display: 'flex', 
+                justifyContent: 'center',
+                flexDirection: 'column',
+                marginTop: '4rem',
+                fontSize: '1rem',
+                textAlign: 'center'
+            }}>
+                <h2 style={{margin: 0}}>Skins</h2>
+                <Carousel images={skins(champion?.skins, champion?.id)}/>
             </Box>
         </Container>
     </Layout>
