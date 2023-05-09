@@ -22,10 +22,10 @@ export default function Home({data}) {
     });
   }, [newData])
 
-  // useEffect(() => {
-  //   const filterItems = Object.entries(data).filter(([key, value]) => value.name.toLowerCase().includes(state.text.toLowerCase()));
-  //   setNewData(filterItems);
-  // }, [state, data]);
+  useEffect(() => {
+    const filterItems = Object.entries(data).filter(([key, value]) => value.name.toLowerCase().includes(state.text.toLowerCase()));
+    setNewData(filterItems);
+  }, [state, data]);
 
   return (
     <>
@@ -101,12 +101,12 @@ export default function Home({data}) {
 }
 
 // This gets called on every request
-export async function getServerSideProps({req}) {
-  // const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION
-  // // Fetch data from external API
-  // const res = await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`);
-  // const {data} = await res.json();
+export async function getStaticProps() {
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION
+  // Fetch data from external API
+  const res = await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`);
+  const {data} = await res.json();
  
   // // Pass data to the page via props
-  return { props: { data: {} } };
+  return { props: { data } };
 }
