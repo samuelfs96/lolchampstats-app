@@ -51,7 +51,7 @@ export default function index({champion}) {
   return (
     <Layout title={`${champion?.name} - Lol Champion Stats`}>
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <ChampImage champ={champion?.id} type='splash' style={{width: '100%', filter: 'opacity(0.5)'}}/>
+            <ChampImage champ={champion?.id} type='splash' style={{width: '100%', height: {lg: '100vh', sm: '80vh', xs: '50vh'}, filter: 'opacity(0.4)'}}/>
             <Box sx={{color: 'white', textAlign: 'center', position: 'absolute', fontSize: {xs: '1rem', sm: '2rem'}, '& *': {margin: '14px'}}}>
                 <h1>{champion?.name}</h1>
                 <p>{champion?.title}</p>

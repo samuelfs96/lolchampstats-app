@@ -7,13 +7,13 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Home({data}) {
-  const [itemsCount, setItemsCount] = useState(15)
+  const [itemsCount, setItemsCount] = useState(12)
   const [state] = useContext(SearchChampionContext);
   const [newData, setNewData] = useState([]);
 
   const handleShowMore = useCallback(() => {
     setItemsCount(itemsCount => {
-      const totalCount = itemsCount + 15;
+      const totalCount = itemsCount + 12;
       if(newData.length > totalCount) return totalCount;
       else return newData.length;
     });
@@ -56,7 +56,6 @@ export default function Home({data}) {
                         flexDirection: 'column',
                         gap: '3px',
                         overflow: 'hidden',
-                        width: { xs: '300px', md: '200px' },
                         alignItems: 'center',
                         transition: '.3s all ease',
                         '&:hover': {
@@ -66,7 +65,13 @@ export default function Home({data}) {
                       }}
                     >
                       <h1 style={{textAlign: 'center', fontSize: '21px'}}>{value?.name}</h1>
-                      <ChampImage champ={value?.id} type='loading'/>
+                      <ChampImage champ={value?.id} type='loading' 
+                        style={{
+                          width: '225px',
+                          height: '400px',
+                          position: 'relative'
+                        }}
+                      />
                     </Paper>
                   </Link>
                 ))
