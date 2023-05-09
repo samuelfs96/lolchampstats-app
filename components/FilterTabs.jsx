@@ -4,10 +4,7 @@ import Tab from '@mui/material/Tab';
 //import PhoneIcon from '@mui/icons-material/Phone';
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 // import PersonPinIcon from '@mui/icons-material/PersonPin';
-import localFont from 'next/font/local';
 import { RecentActors } from '@mui/icons-material';
-// Font files can be colocated inside of `pages`
-const myFont = localFont({ src: '../public/fonts/Azonix.otf' });
 
 const items = [
   {
@@ -41,7 +38,7 @@ export default function FilterTabs() {
         style={{color: 'white'}}>
         {
           items.map(({label, icon}, key) => (
-            <Tab key={key} className={myFont.className} style={{color: 'white'}}  icon={icon} label={label} />
+            <Tab key={key} style={{color: 'white', fontFamily: 'Azonix, sans-serif'}}  icon={icon} label={label} />
           ))
         }
         

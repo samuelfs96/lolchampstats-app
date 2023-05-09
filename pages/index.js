@@ -4,10 +4,7 @@ import Layout from '@/components/Layout'
 import SearchChampionContext from '@/store/context/SearchChampionContext';
 import { Box, Button, Container, Paper } from '@mui/material'
 import { useCallback, useContext, useEffect, useState } from 'react';
-import localFont from 'next/font/local';
 import Link from 'next/link';
-
-const myFont = localFont({ src: '../public/fonts/Azonix.otf' });
 
 export default function Home({data}) {
   const [itemsCount, setItemsCount] = useState(15)
@@ -82,11 +79,11 @@ export default function Home({data}) {
           </Box>
           <Box sx={{marginTop: '4rem', display:'flex', justifyContent: 'center'}}>
             <Button 
-              variant="contained" 
-              className={myFont.className}
+              variant="contained"
               onClick={handleShowMore}
               sx={{
                 backgroundColor: 'primary.pink',
+                fontFamily: 'Azonix, sans-serif',
                 '&:hover': {
                   backgroundColor: 'primary.pink',
                   opacity: '0.8',

@@ -4,11 +4,9 @@ import RatingBox from '@/components/RatingBox'
 import { Box, Chip, Container, Divider, Stack, Tooltip, tooltipClasses } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import React from 'react'
-import localFont from 'next/font/local';
 import Carousel from '@/components/Carousel';
 import Stats from '@/components/Stats';
 
-const myFont = localFont({ src: '../../public/fonts/Azonix.otf' });
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
 const HtmlTooltip = styled(({ className, ...props }) => (
@@ -28,8 +26,8 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 const ToltipInfo = ({name, description}) => {
     return (
         <>
-            <div dangerouslySetInnerHTML={{__html: name}} style={{marginBottom: '.75rem', fontSize: '.8rem'}} className={myFont.className}></div>
-            <div dangerouslySetInnerHTML={{__html: description}} style={{marginBottom: '0', fontSize: '.5rem', lineHeight: '.75rem'}} className={myFont.className}></div>
+            <div dangerouslySetInnerHTML={{__html: name}} style={{marginBottom: '.75rem', fontSize: '.8rem', fontFamily: 'Azonix, sans-serif'}}/>
+            <div dangerouslySetInnerHTML={{__html: description}} style={{marginBottom: '0', fontSize: '.5rem', lineHeight: '.75rem', fontFamily: 'Azonix, sans-serif'}}/>
         </>
     )
 }
@@ -74,11 +72,12 @@ export default function index({champion}) {
                 <Box>
                     <h2 style={{marginTop: '0'}}>Role</h2>
                     <Stack direction="row" spacing={1}>
-                        {champion?.tags.map((tag, index) => <Chip key={tag} label={tag} className={myFont.className} 
+                        {champion?.tags.map((tag, index) => <Chip key={tag} label={tag}
                             sx={{
                                 backgroundColor: index%2 === 0 ? 'primary.pink' : 'primary.blue', 
                                 color: 'white', 
                                 fontSize: '.55rem',
+                                fontFamily: 'Azonix, sans-serif'
                             }}/>)}
                     </Stack>
                     <br/>

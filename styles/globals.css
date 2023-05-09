@@ -1,9 +1,15 @@
+@font-face {
+  font-family: Azonix;
+  src: url(../public/fonts/Azonix.otf);
+}
+
 body{
   margin: 0;
   background: rgb(0,0,0);
   background: linear-gradient(0deg, rgba(0,0,0,1) 30%, rgba(11,90,99,1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: Azonix, sans-serif;
 }
 
 p{

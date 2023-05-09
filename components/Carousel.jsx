@@ -9,11 +9,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import localFont from 'next/font/local';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const myFont = localFont({ src: '../public/fonts/Azonix.otf' });
 
 // const images = [
 //   {
@@ -70,7 +67,7 @@ function Carousel({images}) {
           textTransform: 'uppercase',
         }}
       >
-        <Typography className={myFont.className} sx={{textAlign: 'center', display: 'block', fontSize: '.75rem'}}>{images[activeStep].label}</Typography>
+        <Typography sx={{textAlign: 'center', display: 'block', fontSize: '.75rem', fontFamily: 'Azonix, sans-serif'}}>{images[activeStep].label}</Typography>
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -101,11 +98,10 @@ function Carousel({images}) {
         activeStep={activeStep}
         nextButton={
           <Button
-            className={myFont.className} 
             size="small"
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
-            sx={{fontSize: '.75rem'}}
+            sx={{fontSize: '.75rem', fontFamily: 'Azonix, sans-serif',}}
           >
             Next
             {theme.direction === 'rtl' ? (
@@ -116,7 +112,7 @@ function Carousel({images}) {
           </Button>
         }
         backButton={
-          <Button className={myFont.className} size="small" onClick={handleBack} disabled={activeStep === 0} sx={{fontSize: '.75rem'}}>
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0} sx={{fontSize: '.75rem', fontFamily: 'Azonix, sans-serif',}}>
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
             ) : (
