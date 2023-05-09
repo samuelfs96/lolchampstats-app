@@ -93,16 +93,20 @@ export default function index({champion}) {
             </Box>
             <Box sx={{
                 display: 'flex', 
-                justifyContent: 'center',
+                justifyContent: 'space-around',
                 border: '1px solid', 
                 padding: '1.75rem', 
                 marginTop: '4rem',
                 fontSize: '1rem',
                 borderColor: 'primary.blue',
                 textAlign: 'center',
-                gap: '2rem'
+                flexDirection: {
+                    xs: 'column',
+                    sm: 'column',
+                    lg: 'row'
+                }
             }}>
-                <Box sx={{width: '50%'}}>
+                <Box>
                     <h2 style={{margin: 0}}>Spells</h2>
                     <Box sx={{display: 'flex', justifyContent: 'center', flexFlow: 'wrap', marginTop: '1.5rem', gap: '1rem'}}>
                         <HtmlTooltip key={champion?.passive?.name} title={<ToltipInfo name={champion?.passive?.name} description={champion?.passive?.description} />}>
@@ -136,9 +140,28 @@ export default function index({champion}) {
                     </Box>
                 </Box>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{borderColor: 'primary.blue', display: {xs: 'none', md: 'block'}}}/>
-                <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                <Box sx={{display: 'flex', justifyContent: 'center', alignItems: {
+                    xs: 'center',
+                    sm: 'center',
+                    lg: 'start'
+                }, flexDirection: {
+                    xs: 'column',
+                    sm: 'column',
+                    lg: 'row'
+                }, marginTop: {
+                    xs: '4rem',
+                    sm: '4rem',
+                    lg: 'auto'
+                }}}>
                     <h2 style={{margin: 0}}>Stats</h2>
-                    <Box sx={{width: {xs: '80vw', md: '400px'}}}><Stats {
+                    <Box sx={{width: {xs: '80vw', md: '80vw', lg: '400px'}, '& canvas': {
+                        margin: '0 auto',
+                        marginLeft: {
+                            xs: '3%',
+                            sm: 'auto',
+                            lg: 'auto'
+                        }
+                    }}}><Stats {
                         ...getData({
                             ...Object.entries(champion?.info).reduce((newObject, object) => {
                                 const [key, value] = object;
