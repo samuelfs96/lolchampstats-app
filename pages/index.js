@@ -65,7 +65,9 @@ export default function Home({data}) {
                       }}
                     >
                       <h1 style={{textAlign: 'center', fontSize: '21px'}}>{value?.name}</h1>
-                      <ChampImage champ={value?.id} type='loading' 
+                      <ChampImage
+                        alt={`Image of ${key}`}
+                        src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${value?.id}_0.jpg`} 
                         style={{
                           width: '225px',
                           height: '400px',
