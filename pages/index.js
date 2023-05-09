@@ -9,8 +9,6 @@ import Link from 'next/link';
 
 const myFont = localFont({ src: '../public/fonts/Azonix.otf' });
 
-const isServerReq = req => !req.url.startsWith('/_next');
-
 export default function Home({data}) {
   const [itemsCount, setItemsCount] = useState(15)
   const [state] = useContext(SearchChampionContext);
@@ -24,10 +22,10 @@ export default function Home({data}) {
     });
   }, [newData])
 
-  useEffect(() => {
-    const filterItems = Object.entries(data).filter(([key, value]) => value.name.toLowerCase().includes(state.text.toLowerCase()));
-    setNewData(filterItems);
-  }, [state, data]);
+  // useEffect(() => {
+  //   const filterItems = Object.entries(data).filter(([key, value]) => value.name.toLowerCase().includes(state.text.toLowerCase()));
+  //   setNewData(filterItems);
+  // }, [state, data]);
 
   return (
     <>
@@ -106,7 +104,7 @@ export default function Home({data}) {
 export async function getServerSideProps({req}) {
   // const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION
   // // Fetch data from external API
-  // const res = isServerReq(req) ? await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`) : null;
+  // const res = await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`);
   // const {data} = await res.json();
  
   // // Pass data to the page via props
