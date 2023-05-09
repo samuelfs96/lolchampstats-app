@@ -38,7 +38,7 @@ export default function FilterTabs() {
         style={{color: 'white'}}>
         {
           items.map(({label, icon}, key) => (
-            <Tab key={key} style={{color: 'white', fontFamily: 'Azonix, sans-serif'}}  icon={icon} label={label} />
+            <Tab key={key} style={{color: 'white', fontSize: '.75rem', fontFamily: 'Azonix, sans-serif'}}  icon={icon} label={label} />
           ))
         }
         

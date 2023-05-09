@@ -6,21 +6,30 @@ import { Box, Button, Container, Paper } from '@mui/material'
 import { useCallback, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 
+const INITIAL_COUNT = 20;
+
 export default function Home({data}) {
-  const [itemsCount, setItemsCount] = useState(12)
-  const [state] = useContext(SearchChampionContext);
+  const [itemsCount, setItemsCount] = useState(INITIAL_COUNT)
+  const [state, dispatch] = useContext(SearchChampionContext);
   const [newData, setNewData] = useState([]);
 
   const handleShowMore = useCallback(() => {
     setItemsCount(itemsCount => {
-      const totalCount = itemsCount + 12;
+      const totalCount = itemsCount + INITIAL_COUNT;
       if(newData.length > totalCount) return totalCount;
       else return newData.length;
     });
   }, [newData])
 
   useEffect(() => {
-    const filterItems = Object.entries(data).filter(([key, value]) => value.name.toLowerCase().includes(state.text.toLowerCase()));
+    dispatch({
+      type: 'search',
+      text: ''
+    })
+  }, [dispatch])
+
+  useEffect(() => {
+    const filterItems = Object.values(data).filter((value) => value.name.toLowerCase().includes(state.text.toLowerCase()));
     setNewData(filterItems);
   }, [state, data]);
 
@@ -42,12 +51,13 @@ export default function Home({data}) {
           >
             {
               newData.length > 0 ? (
-                newData.slice(0,itemsCount).map(([key, value], index) => (
-                  <Link href={`/champion/${key}`} key={key} 
+                newData.slice(0,itemsCount).map((value, index) => (
+                  <Link href={`/champion/${value?.id}`} key={value?.id} 
                     style={{
                       textDecoration: 'none', 
                     }}>
                     <Paper 
+                      square
                       variant="outlined"
                       sx={{
                         backgroundColor: `${index%2 === 0 ? 'primary.blue' : 'primary.pink'}`,
@@ -60,17 +70,17 @@ export default function Home({data}) {
                         transition: '.3s all ease',
                         '&:hover': {
                           opacity: '0.8',
-                          transform: 'scale(1.05)'
+                          transform: 'scale(1.025)'
                         }
                       }}
                     >
-                      <h1 style={{textAlign: 'center', fontSize: '21px'}}>{value?.name}</h1>
+                      <h1 style={{textAlign: 'center', fontSize: '.85rem'}}>{value?.name}</h1>
                       <ChampImage
-                        alt={`Image of ${key}`}
+                        alt={`Image of ${value?.id}`}
                         src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${value?.id}_0.jpg`} 
                         style={{
-                          width: '225px',
-                          height: '400px',
+                          width: '208px',
+                          height: '360px',
                           position: 'relative'
                         }}
                       />
@@ -84,21 +94,25 @@ export default function Home({data}) {
               )
             }
           </Box>
-          <Box sx={{marginTop: '4rem', display:'flex', justifyContent: 'center'}}>
-            <Button 
-              variant="contained"
-              onClick={handleShowMore}
-              sx={{
-                animation: 'pulse 2s infinite',
-                backgroundColor: 'primary.pink',
-                fontFamily: 'Azonix, sans-serif',
-                '&:hover': {
-                  backgroundColor: 'primary.pink',
-                  opacity: '0.8',
-                  transition: '.3s all ease'
-                },
-              }}>Show More</Button>
-          </Box>
+          {
+            newData.length > 0 && !(newData.length <= itemsCount) && (
+              <Box sx={{marginTop: '4rem', display:'flex', justifyContent: 'center'}}>
+                <Button 
+                  variant="contained"
+                  onClick={handleShowMore}
+                  sx={{
+                    animation: 'pulse 2s infinite',
+                    backgroundColor: 'primary.pink',
+                    fontFamily: 'Azonix, sans-serif',
+                    '&:hover': {
+                      backgroundColor: 'primary.pink',
+                      opacity: '0.8',
+                      transition: '.3s all ease'
+                    },
+                  }}>Show More</Button>
+              </Box>
+            )
+          }
         </Container>
       </Layout>
     </>

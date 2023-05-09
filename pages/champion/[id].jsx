@@ -54,7 +54,7 @@ export default function index({champion}) {
             <ChampImage 
                 alt={`Image of ${champion?.id}`}
                 src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion?.id}_0.jpg`}
-                style={{width: '100%', height: {lg: '100vh', sm: '70vh', xs: '40vh'}, filter: 'opacity(0.4)'}}/>
+                style={{width: '100%', height: {lg: '100vh', sm: '70vh', xs: '35vh'}, filter: 'opacity(0.4)'}}/>
             <Box sx={{color: 'white', textAlign: 'center', position: 'absolute', fontSize: {xs: '1rem', sm: '2rem'}, '& *': {margin: '14px'}}}>
                 <h1>{champion?.name}</h1>
                 <p>{champion?.title}</p>
