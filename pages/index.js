@@ -104,11 +104,11 @@ export default function Home({data}) {
 
 // This gets called on every request
 export async function getServerSideProps({req}) {
-  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION
-  // Fetch data from external API
-  const res = isServerReq(req) ? await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`) : null;
-  const {data} = await res.json();
+  // const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION
+  // // Fetch data from external API
+  // const res = isServerReq(req) ? await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`) : null;
+  // const {data} = await res.json();
  
-  // Pass data to the page via props
-  return { props: { data } };
+  // // Pass data to the page via props
+  return { props: { data: {} } };
 }
