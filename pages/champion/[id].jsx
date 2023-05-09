@@ -111,7 +111,8 @@ export default function index({champion}) {
                             transform: 'scale(1.05)',
                             transition: '.3s all ease'
                             }}}>
-                                <img alt={`Image of ${champion?.passive?.name}`}
+                                <img 
+                                    alt={`Image of ${champion?.passive?.name}`}
                                     src={`https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/img/passive/${champion?.passive?.image.full}`}/>
                                 <p style={{margin: '.25rem'}}>passive</p>
                             </Box>
@@ -124,7 +125,8 @@ export default function index({champion}) {
                                         transform: 'scale(1.05)',
                                         transition: '.3s all ease'
                                     }}}>
-                                        <img  alt={`Image of ${spell.id}`} 
+                                        <img  
+                                            alt={`Image of ${spell.id}`} 
                                             src={`https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/img/spell/${spell.image.full}`}/>
                                         <p style={{margin: '.25rem'}}>{spell.id.split('').pop()}</p>
                                     </Box>

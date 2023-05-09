@@ -20,7 +20,6 @@ ChartJS.register(
   );
 
 export default function Stats({labels, data}) {
-    console.log({labels, data})
     return <Radar
     data={{
         labels,
