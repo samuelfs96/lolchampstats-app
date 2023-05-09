@@ -3,6 +3,20 @@
   src: url(../public/fonts/Azonix.otf);
 }
 
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #bb3162b3;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px #bb316200;
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 #bb316200;
+  }
+}
+
 body{
   margin: 0;
   background: rgb(0,0,0);

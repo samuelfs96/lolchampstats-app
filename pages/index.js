@@ -89,6 +89,7 @@ export default function Home({data}) {
               variant="contained"
               onClick={handleShowMore}
               sx={{
+                animation: 'pulse 2s infinite',
                 backgroundColor: 'primary.pink',
                 fontFamily: 'Azonix, sans-serif',
                 '&:hover': {
