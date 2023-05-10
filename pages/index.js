@@ -16,7 +16,7 @@ export default function Home({data}) {
   //- FUNCTIONS
 
   const imageLoader = ({ src, quality }) => {
-    return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${src}?q=${quality || 75}`;
+    return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${src}?w=208&q=${quality || 75}`;
   };
 
   const handleShowMore = useCallback(() => {
