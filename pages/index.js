@@ -8,6 +8,10 @@ import Link from 'next/link';
 
 const INITIAL_COUNT = 20;
 
+const imageLoader = ({ src, quality }) => {
+  return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${src}?q=${quality || 75}`;
+};
+
 export default function Home({data}) {
   const [itemsCount, setItemsCount] = useState(INITIAL_COUNT)
   const [state, dispatch] = useContext(SearchChampionContext);
@@ -92,7 +96,8 @@ export default function Home({data}) {
                       <h1 style={{textAlign: 'center', fontSize: '.85rem'}}>{value?.name}</h1>
                       <ChampImage
                         alt={`Image of ${value?.id}`}
-                        src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${value?.id}_0.jpg`} 
+                        loader={imageLoader}
+                        src={`${value?.id}_0.jpg`} 
                         style={{
                           width: '208px',
                           height: '360px',

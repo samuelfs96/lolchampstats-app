@@ -52,6 +52,7 @@ export default function index({champion}) {
     <Layout title={`${champion?.name} - Lol Champion Stats`}>
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <ChampImage 
+                priority={true}
                 alt={`Image of ${champion?.id}`}
                 src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion?.id}_0.jpg`}
                 style={{width: '100%', height: {lg: '100vh', sm: '70vh', xs: '35vh'}, filter: 'opacity(0.4)'}}/>
