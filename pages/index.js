@@ -8,16 +8,16 @@ import Link from 'next/link';
 
 const INITIAL_COUNT = 20;
 
-const imageLoader = ({ src, quality }) => {
-  return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${src}?q=${quality || 75}`;
-};
-
 export default function Home({data}) {
   const [itemsCount, setItemsCount] = useState(INITIAL_COUNT)
   const [state, dispatch] = useContext(SearchChampionContext);
   const [newData, setNewData] = useState([]);
 
   //- FUNCTIONS
+
+  const imageLoader = ({ src, quality }) => {
+    return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${src}?q=${quality || 75}`;
+  };
 
   const handleShowMore = useCallback(() => {
     setItemsCount(itemsCount => {
