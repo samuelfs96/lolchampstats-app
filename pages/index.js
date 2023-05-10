@@ -15,10 +15,6 @@ export default function Home({data}) {
 
   //- FUNCTIONS
 
-  const imageLoader = ({ src, quality }) => {
-    return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${src}?w=208&q=${quality || 75}`;
-  };
-
   const handleShowMore = useCallback(() => {
     setItemsCount(itemsCount => {
       const totalCount = itemsCount + INITIAL_COUNT;
@@ -96,8 +92,7 @@ export default function Home({data}) {
                       <h1 style={{textAlign: 'center', fontSize: '.85rem'}}>{value?.name}</h1>
                       <ChampImage
                         alt={`Image of ${value?.id}`}
-                        loader={imageLoader}
-                        src={`${value?.id}_0.jpg`} 
+                        src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${value?.id}_0.jpg`} 
                         style={{
                           width: '208px',
                           height: '360px',
