@@ -24,13 +24,11 @@ export default function Home({data}) {
   }, [newData]);
 
   const getTags = useMemo(() => {
-    if(newData.length > 0)
-      return [...(new Set(newData.reduce((newarray, {tags}) => {
-        newarray.push(...tags)
-        return newarray;
-      }, [])))];
-    else return [];
-  },[newData]);
+    return [...(new Set(Object.values(data).reduce((newarray, {tags}) => {
+      newarray.push(...tags)
+      return newarray;
+    }, [])))];
+  },[data]);
 
   //-EFFECTS
 
@@ -40,12 +38,15 @@ export default function Home({data}) {
       text: '',
       filterValue: 'All champions'
     })
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
-    const filterItems = Object.values(data).filter((value) => value.name.toLowerCase().includes(state.text.toLowerCase()));
-    setNewData(filterItems);
-  }, [state, data]);
+    const { text, filterValue } = state;
+    const filteredData = Object.values(data).filter(item => 
+      item.name.toLowerCase().includes(text.toLowerCase()) && (item.tags.includes(filterValue) || filterValue === 'All champions')
+    );
+    setNewData(filteredData);
+  }, [state, data]); 
 
   return (
     <>
