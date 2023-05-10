@@ -26,7 +26,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 const ToltipInfo = ({name, description}) => {
     return (
         <>
-            <div dangerouslySetInnerHTML={{__html: name}} style={{marginBottom: '.75rem', fontSize: '.8rem', fontFamily: 'Azonix, sans-serif'}}/>
+            <div dangerouslySetInnerHTML={{__html: name}} style={{marginBottom: '.75rem', fontSize: '.8rem', fontFamily: 'Azonix, sans-serif', color: '#bb3162'}}/>
             <div dangerouslySetInnerHTML={{__html: description}} style={{marginBottom: '0', fontSize: '.5rem', lineHeight: '.75rem', fontFamily: 'Azonix, sans-serif'}}/>
         </>
     )
@@ -64,9 +64,10 @@ export default function index({champion}) {
         <Container sx={{marginTop: '2rem', marginBottom: '2rem', color: 'white'}}>
             <Box sx={{
                 display: 'flex', 
-                justifyContent: 'center', 
+                justifyContent: 'center',
+                alignItems: {xs: 'start', sm: 'center', lg: 'center'},
                 flexDirection: {xs: 'column', sm: 'column', lg: 'row'},
-                gap: {xs: '1rem', sm: '1rem', lg: '2rem'}, 
+                gap: {xs: '.5rem', sm: '1rem', lg: '2rem'}, 
                 border: '1px solid', 
                 padding: '1.75rem', 
                 marginTop: '4rem',
@@ -90,8 +91,7 @@ export default function index({champion}) {
                 </Box>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{borderColor: 'primary.pink'}}/>
                 <Box>
-                    <h2>Lore</h2>
-                    <p style={{marginBottom: '0'}}>{champion?.lore}</p>
+                    <p style={{margin: '0'}}>{champion?.lore}</p>
                 </Box>
             </Box>
             <Box sx={{

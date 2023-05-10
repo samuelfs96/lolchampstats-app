@@ -6,10 +6,10 @@ export default function RatingBox({value}) {
     <Box sx={{display: 'flex'}}>
         {Array.from(Array(10).keys()).map((val) => <Box key={val} 
             sx={{
-                width: '28px',
-                height: '7px',
+                width: '25px',
+                height: '5px',
                 border: '1px solid white',
-                backgroundColor: value > val ? 'primary.blue' : 'transparent'
+                backgroundColor: value > val ? 'primary.pink' : 'transparent'
             }}
         />)}
     </Box>
