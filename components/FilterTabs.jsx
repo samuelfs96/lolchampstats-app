@@ -1,44 +1,51 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-//import PhoneIcon from '@mui/icons-material/Phone';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
-// import PersonPinIcon from '@mui/icons-material/PersonPin';
-import { RecentActors } from '@mui/icons-material';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import ClassIcon from '@mui/icons-material/Class';
+import SearchChampionContext from '@/store/context/SearchChampionContext';
+import { useMemo, useContext } from 'react';
 
-const items = [
+const initialItems = [
   {
     label: 'All champions',
-    icon: <RecentActors />
+    icon: <ClearAllIcon />
   },
-  // {
-  //   label: 'All champions',
-  //   icon: <FavoriteIcon />
-  // },
-  // {
-  //   label: 'All champions',
-  //   icon: <PersonPinIcon />
-  // },
 ]
 
-export default function FilterTabs() {
-  const [value, setValue] = React.useState(0);
-
+export default function FilterTabs({tags}) {
+  const [state, dispatch] = useContext(SearchChampionContext);
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    dispatch({
+      type: 'filter',
+      filterValue: newValue
+    })
   };
+
+  const items = useMemo(() => {
+    return [
+      ...initialItems,
+      ...tags.map(tag => ({
+        label: tag,
+        icon: <ClassIcon fontSize="small" />
+      }))
+    ]
+  }, [tags])
 
   return (
     <>
       <Tabs 
-        value={value} 
+        value={items.length > 0 ? state.filterValue : 'All champions'} 
         onChange={handleChange}  
         aria-label="icon label tabs example" 
         TabIndicatorProps={{ sx: {backgroundColor: 'primary.pink'} }}
+        variant="scrollable"
+        scrollButtons="auto"
+        indicatorColor="primary"
         style={{color: 'white'}}>
         {
           items.map(({label, icon}, key) => (
-            <Tab key={key} style={{color: 'white', fontSize: '.75rem', fontFamily: 'Azonix, sans-serif'}}  icon={icon} label={label} />
+            <Tab key={key} style={{color: 'white', fontSize: '.6rem', fontFamily: 'Azonix, sans-serif'}} value={label}  icon={icon} label={label} />
           ))
         }
         

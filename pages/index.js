@@ -3,7 +3,7 @@ import FilterTabs from '@/components/FilterTabs'
 import Layout from '@/components/Layout'
 import SearchChampionContext from '@/store/context/SearchChampionContext';
 import { Box, Button, Container, Paper } from '@mui/material'
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 
 const INITIAL_COUNT = 20;
@@ -13,18 +13,32 @@ export default function Home({data}) {
   const [state, dispatch] = useContext(SearchChampionContext);
   const [newData, setNewData] = useState([]);
 
+  //- FUNCTIONS
+
   const handleShowMore = useCallback(() => {
     setItemsCount(itemsCount => {
       const totalCount = itemsCount + INITIAL_COUNT;
       if(newData.length > totalCount) return totalCount;
       else return newData.length;
     });
-  }, [newData])
+  }, [newData]);
+
+  const getTags = useMemo(() => {
+    if(newData.length > 0)
+      return [...(new Set(newData.reduce((newarray, {tags}) => {
+        newarray.push(...tags)
+        return newarray;
+      }, [])))];
+    else return [];
+  },[newData]);
+
+  //-EFFECTS
 
   useEffect(() => {
     dispatch({
-      type: 'search',
-      text: ''
+      type: 'multiple',
+      text: '',
+      filterValue: 'All champions'
     })
   }, [dispatch])
 
@@ -38,7 +52,7 @@ export default function Home({data}) {
       <Layout title="Lol Champion Stats">
         <Container sx={{marginTop: '2rem', marginBottom: '2rem', height: newData.length > 0 ? 'auto': '100vh'}}>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <FilterTabs/>
+            <FilterTabs tags={getTags}/>
           </Box>
           <Box
             sx={{
