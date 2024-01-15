@@ -138,6 +138,7 @@ export default function Home({data}) {
 export async function getStaticProps() {
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION
   // Fetch data from external API
+  //new api version 14.1.1
   const res = await fetch(`http://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/en_US/champion.json`);
   const {data} = await res.json();
  
