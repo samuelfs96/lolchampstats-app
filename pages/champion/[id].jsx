@@ -47,6 +47,8 @@ const getData = (stats) => {
     };
 }
 
+const spells_key = ['q','w','e','r'];
+
 export default function index({champion}) {
   return (
     <Layout title={`${champion?.name} - Lol Champion Stats`}>
@@ -126,7 +128,7 @@ export default function index({champion}) {
                             </Box>
                         </HtmlTooltip>
                         {
-                            champion?.spells.map(spell => 
+                            champion?.spells.map((spell, key) => 
                                 <HtmlTooltip key={spell.id} title={<ToltipInfo name={spell?.name} description={spell?.description} />} placement="top">
                                     <Box sx={{border: '1px solid white', cursor: 'pointer', '&:hover': {
                                         opacity: '0.8',
@@ -137,7 +139,7 @@ export default function index({champion}) {
                                             style={{width: '54px', height: '54px', position: 'relative', margin: '0 auto'}}
                                             alt={`Image of ${spell.id}`} 
                                             src={`https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/img/spell/${spell.image.full}`}/>
-                                        <p style={{margin: '.25rem'}}>{spell.id.split('').pop()}</p>
+                                        <p style={{margin: '.25rem'}}>{spells_key[key]}</p>
                                     </Box>
                                 </HtmlTooltip>
                             )
